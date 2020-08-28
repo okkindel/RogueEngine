@@ -1,4 +1,5 @@
 import CONFIG = require('../assets/config.json');
+import { Circle, Point, Line } from '../entity';
 
 export class Canvas {
   private _context: CanvasRenderingContext2D;
@@ -41,6 +42,48 @@ export class Canvas {
   // ----------------------------------
   // FIXME: Remove it from singleton
   // ----------------------------------
+
+  public drawPoint(point: Point) {
+    this._context.beginPath();
+    this._context.arc(
+      point.x,
+      point.y,
+      this._context.lineWidth,
+      0,
+      2 * Math.PI,
+      false
+    );
+    this._context.fill();
+  }
+
+  drawLine(line: Line) {
+    this._context.beginPath();
+    this._context.moveTo(0, line.at(0));
+    this._context.lineTo(this._context.canvas.width, line.at(this._context.canvas.width));
+    this._context.stroke();
+  }
+
+  public drawSection(p: Point, q: Point) {
+    this._context.beginPath();
+    this._context.moveTo(p.x, p.y);
+    this._context.lineTo(q.x, q.y);
+    this._context.stroke();
+  }
+
+  public drawCircle(circle: Circle, isFilled = false) {
+    this._context.beginPath();
+    this._context.arc(
+      circle.center.x,
+      circle.center.y,
+      circle.radius,
+      0,
+      2 * Math.PI
+    );
+    this._context.stroke();
+    if (isFilled) {
+      this._context.fill();
+    }
+  }
 
   public setColor(color: string): void {
     this._context.strokeStyle = color;
