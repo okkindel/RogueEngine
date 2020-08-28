@@ -21,7 +21,7 @@ export class Circle implements Printable {
     this.radius = radius;
   }
 
-  public draw(shouldFill: boolean = false): void {
+  public draw(shouldFill: boolean = true): void {
     const ctx = Canvas.Context;
     ctx.beginPath();
     ctx.arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI);

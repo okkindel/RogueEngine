@@ -1,5 +1,4 @@
-import CONFIG = require('../assets/config.json');
-import { setColor } from './printable';
+import CONFIG = require('../config.json');
 
 export class Canvas {
   private _context: CanvasRenderingContext2D;
@@ -26,7 +25,9 @@ export class Canvas {
   }
 
   public reload(): void {
-    this._reloadBackground();
+    this._context.fillStyle = CONFIG.BACKGROUND_COLOR;
+    this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
+    this._context.fill();
   }
 
   private _setupCanvas(): void {
@@ -35,11 +36,5 @@ export class Canvas {
     // SET ORIGIN TO LOWER-LEFT CORNER
     this._context.translate(0, this._canvas.height);
     this._context.scale(1, -1);
-  }
-
-  private _reloadBackground(): void {
-    setColor(this._context, CONFIG.BACKGROUND_COLOR);
-    this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
-    this._context.fill();
   }
 }
