@@ -33,7 +33,7 @@ export class Canvas {
   }
 
   private _reloadBackground(): void {
-    this._setColor(CONFIG.BACKGROUND_COLOR);
+    this.setColor(CONFIG.BACKGROUND_COLOR);
     this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
     this._context.fill();
   }
@@ -42,12 +42,12 @@ export class Canvas {
   // FIXME: Remove it from singleton
   // ----------------------------------
 
-  private _setColor(color: string): void {
+  public setColor(color: string): void {
     this._context.strokeStyle = color;
     this._context.fillStyle = color;
   }
 
-  private _setLineWidth(weight: number): void {
+  public setLineWidth(weight: number): void {
     this._context.lineWidth = weight;
   }
 }
