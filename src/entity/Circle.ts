@@ -1,7 +1,9 @@
 import { bisector, euclidean } from '../utils';
+import { Printable } from '../core/printable';
+import { Canvas } from '../core/canvas';
 import { Point } from './Point';
 
-export class Circle {
+export class Circle implements Printable {
   public radius: number;
   public center: Point;
 
@@ -17,6 +19,14 @@ export class Circle {
   constructor(center: Point, radius: number) {
     this.center = center;
     this.radius = radius;
+  }
+
+  public draw(shouldFill: boolean = false): void {
+    const ctx = Canvas.Context;
+    ctx.beginPath();
+    ctx.arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI);
+    ctx.stroke();
+    if (shouldFill) { ctx.fill(); }
   }
 
   public intersectPoints(circle: Circle): [Point, Point] {

@@ -1,11 +1,13 @@
-import { slope } from "../utils";
-import { Point } from "./Point";
+import { Printable } from '../core/printable';
+import { Canvas } from '../core/canvas';
+import { slope } from '../utils';
+import { Point } from './Point';
 
 /**
  * Line in Euclidean concept
  * in the form of ax + b.
  */
-export class Line {
+export class Line implements Printable {
   public a: number;
   public b: number;
 
@@ -23,6 +25,14 @@ export class Line {
   constructor(a: number, b: number) {
     this.a = a;
     this.b = b;
+  }
+
+  public draw(): void {
+    const ctx = Canvas.Context;
+    ctx.beginPath();
+    ctx.moveTo(0, this.at(0));
+    ctx.lineTo(ctx.canvas.width, this.at(ctx.canvas.width));
+    ctx.stroke();
   }
 
   public at(x: number): number {
