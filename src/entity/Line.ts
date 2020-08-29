@@ -3,10 +3,6 @@ import { Canvas } from '../core/canvas';
 import { slope } from '../utils';
 import { Point } from './Point';
 
-/**
- * Line in Euclidean concept
- * in the form of ax + b.
- */
 export class Line implements Printable {
   public a: number;
   public b: number;

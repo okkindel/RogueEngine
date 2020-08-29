@@ -7,6 +7,8 @@ export class Engine {
   private static _interval: number;
 
   public static createLoop(): void {
+    GameLoop.OnInit();
+
     this._interval = window.setInterval(() => {
       Canvas.Instance.reload();
       GameLoop.OnLoop();

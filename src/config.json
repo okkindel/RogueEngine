@@ -1,4 +1,23 @@
 {
   "FRAMES": 60,
-  "BACKGROUND_COLOR": "#151515"
+  "BACKGROUND_COLOR": "#151515",
+  "GAME": {
+    "BOARD_SIZE_X": 100,
+    "BOARD_SIZE_Y": 100,
+    "TILE_SIZE": 30,
+    "PLAYER_X": 10,
+    "PLAYER_Y": 10
+  },
+  "TILES": {
+    "GRASS": {
+      "CHAR": "⬝",
+      "ACCESIBLE": true,
+      "HEIGHT_LEVEL": 1
+    },
+    "CHARACTER": {
+      "CHAR": "■",
+      "ACCESIBLE": true,
+      "HEIGHT_LEVEL": 1
+    }
+  }
 }
