@@ -33,8 +33,9 @@ export class Canvas {
   private _setupCanvas(): void {
     this._canvas.height = window.innerHeight;
     this._canvas.width = window.innerWidth;
-    // SET ORIGIN TO LOWER-LEFT CORNER
-    this._context.translate(0, this._canvas.height);
-    this._context.scale(1, -1);
+
+    // UNCOMMENT TO SET ORIGIN TO LOWER-LEFT CORNER
+    // this._context.translate(0, this._canvas.height);
+    // this._context.scale(1, -1);
   }
 }

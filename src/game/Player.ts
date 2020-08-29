@@ -1,8 +1,8 @@
 import { Text, Point } from '../entity';
+import { Board } from './Board';
 import { Tile } from './Tile';
 
 import CONFIG = require('../config.json');
-import { Board } from './Board';
 
 export class Player extends Tile {
   private static _instance: Player;
@@ -32,7 +32,8 @@ export class Player extends Tile {
       CONFIG.GAME.PLAYER_X,
       CONFIG.GAME.PLAYER_Y,
       false,
-      1
+      CONFIG.TILES.CHARACTER.HEIGHT_LEVEL,
+      CONFIG.TILES.CHARACTER.BASIC_COLOR
     );
 
     this._board = board;
@@ -67,14 +68,14 @@ export class Player extends Tile {
   }
 
   private _moveUp(): void {
-    const tile: Tile = this._board.board[this.xCord][this.yCord + 1];
-    if (tile.isAccessible) { this.yCord += 1; }
+    const tile: Tile = this._board.board[this.xCord][this.yCord - 1];
+    if (tile.isAccessible) { this.yCord -= 1; }
     this._updatePosition();
   }
 
   private _moveDown(): void {
-    const tile: Tile = this._board.board[this.xCord][this.yCord - 1];
-    if (tile.isAccessible) { this.yCord -= 1; }
+    const tile: Tile = this._board.board[this.xCord][this.yCord + 1];
+    if (tile.isAccessible) { this.yCord += 1; }
     this._updatePosition();
   }
 
@@ -91,9 +92,6 @@ export class Player extends Tile {
   }
 
   private _updatePosition(): void {
-    this.char.position = new Point(
-      this.xCord * CONFIG.GAME.TILE_SIZE,
-      this.yCord * CONFIG.GAME.TILE_SIZE
-    );
+    this.content.position = Player.Position;
   }
 }

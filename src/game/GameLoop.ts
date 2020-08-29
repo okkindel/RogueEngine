@@ -1,5 +1,3 @@
-import { setColor } from '../core/printable';
-import { Canvas } from '../core/canvas';
 import { Player } from './Player';
 import { Board } from './Board';
 
@@ -22,8 +20,6 @@ export class GameLoop {
   }
 
   private static _drawAllEntities(): void {
-    setColor(Canvas.Context, '#fff');
-
     this.gameBoard.draw();
     Player.draw();
   }
