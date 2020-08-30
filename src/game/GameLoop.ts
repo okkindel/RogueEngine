@@ -1,3 +1,6 @@
+import { setColor } from '../core/printable';
+import { Raycaster } from './Raycaster';
+import { Canvas } from '../core/canvas';
 import { Player } from './Player';
 import { Board } from './Board';
 
@@ -13,6 +16,7 @@ export class GameLoop {
       CONFIG.GAME.BOARD_SIZE_Y
     );
     Player.setInstance(this.gameBoard);
+    Raycaster.setInstance(this.gameBoard);
   }
 
   public static OnLoop(): void {
@@ -21,6 +25,8 @@ export class GameLoop {
 
   private static _drawAllEntities(): void {
     this.gameBoard.draw();
+
+    setColor(Canvas.Context, '#fff');
     Player.draw();
   }
 }

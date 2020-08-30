@@ -12,18 +12,15 @@
     "GRASS": {
       "CHAR": "⬝",
       "ACCESIBLE": true,
-      "BASIC_COLOR": "#00ff00",
       "HEIGHT_LEVEL": 1
     },
     "WALL": {
       "CHAR": "⯀",
       "ACCESIBLE": false,
-      "BASIC_COLOR": "#ff0000",
       "HEIGHT_LEVEL": 5
     },
     "CHARACTER": {
       "CHAR": "C",
-      "BASIC_COLOR": "#ffffff",
       "ACCESIBLE": true,
       "HEIGHT_LEVEL": 1
     }

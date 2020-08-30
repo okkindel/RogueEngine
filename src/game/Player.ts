@@ -32,8 +32,7 @@ export class Player extends Tile {
       CONFIG.GAME.PLAYER_X,
       CONFIG.GAME.PLAYER_Y,
       false,
-      CONFIG.TILES.CHARACTER.HEIGHT_LEVEL,
-      CONFIG.TILES.CHARACTER.BASIC_COLOR
+      CONFIG.TILES.CHARACTER.HEIGHT_LEVEL
     );
 
     this._board = board;
@@ -69,25 +68,25 @@ export class Player extends Tile {
 
   private _moveUp(): void {
     const tile: Tile = this._board.board[this.xCord][this.yCord - 1];
-    if (tile.isAccessible) { this.yCord -= 1; }
+    if (tile && tile.isAccessible) { this.yCord -= 1; }
     this._updatePosition();
   }
 
   private _moveDown(): void {
     const tile: Tile = this._board.board[this.xCord][this.yCord + 1];
-    if (tile.isAccessible) { this.yCord += 1; }
+    if (tile && tile.isAccessible) { this.yCord += 1; }
     this._updatePosition();
   }
 
   private _moveLeft(): void {
-    const tile: Tile = this._board.board[this.xCord - 1][this.yCord];
-    if (tile.isAccessible) { this.xCord -= 1; }
+    const tile: Tile = this._board.board[this.xCord - 1] && this._board.board[this.xCord - 1][this.yCord];
+    if (tile && tile.isAccessible) { this.xCord -= 1; }
     this._updatePosition();
   }
 
   private _moveRight(): void {
-    const tile: Tile = this._board.board[this.xCord + 1][this.yCord];
-    if (tile.isAccessible) { this.xCord += 1; }
+    const tile: Tile = this._board.board[this.xCord + 1] && this._board.board[this.xCord + 1][this.yCord];
+    if (tile && tile.isAccessible) { this.xCord += 1; }
     this._updatePosition();
   }
 
