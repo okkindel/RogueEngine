@@ -49,20 +49,22 @@ export class Tile implements Printable {
     );
 
     const distance = euclidean(Player.Position, this.content.position);
-    let drawingColor = predefinedColor ? predefinedColor : CONFIG.COLORS.TILE_COLOR;
+    let drawingColor = predefinedColor
+      ? predefinedColor
+      : CONFIG.COLORS.TILE_COLOR;
     drawingColor = Player.Instance.availableTiles.includes(this)
       ? shadeColor('#ffffff', -(distance / 5))
       : drawingColor;
 
     if (!this.isAccessible) {
       for (let i = 1; i <= this.heightLevel; i++) {
+        const xAngle = Math.atan2(Player.Position.x, this.content.position.x);
+        const yAngle = Math.atan2(Player.Position.y, this.content.position.y);
         const newViewPort = new Point(
-          viewPort.x +
-            Math.cos(Math.atan2(Player.Position.x, this.content.position.x)) *
-              (distance / (2 * CONFIG.GAME.TILE_SIZE) + 5 * i),
-          viewPort.y +
-            Math.sin(Math.atan2(Player.Position.y, this.content.position.y)) *
-              (distance / (2 * CONFIG.GAME.TILE_SIZE) + 5 * i)
+          viewPort.x - CONFIG.GAME.TILE_SIZE / 2 +
+            Math.cos(xAngle) * (distance / (2 * CONFIG.GAME.TILE_SIZE) + 5 * i),
+          viewPort.y - CONFIG.GAME.TILE_SIZE / 2 +
+            Math.sin(yAngle) * (distance / (2 * CONFIG.GAME.TILE_SIZE) + 5 * i)
         );
         setColor(Canvas.Context, shadeColor(drawingColor, -(10 * i)));
         new Text(this.content.text, newViewPort, CONFIG.GAME.TILE_SIZE).draw();
