@@ -1,5 +1,3 @@
-import { setColor } from '../core/printable';
-import { Canvas } from '../core/canvas';
 import { Raycaster } from './Raycaster';
 import { Text, Point } from '../entity';
 import { Board } from './Board';
@@ -50,8 +48,7 @@ export class Player extends Tile {
   }
 
   public static draw(): void {
-    setColor(Canvas.Context, '#fff');
-    this._instance.draw(true);
+    this._instance.draw(CONFIG.COLORS.PLAYER_COLOR);
   }
 
   private _setKeyListener(): void {

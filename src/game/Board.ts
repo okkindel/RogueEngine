@@ -79,8 +79,6 @@ export class Board implements Printable {
         for (let j = room.y1 - 1; j <= room.y1; j++) {
           makeOffset(i, j, 'WALL_VERTICAL');
         }
-      }
-      for (let i = room.x1; i < room.x2; i++) {
         for (let j = room.y2 - 1; j <= room.y2; j++) {
           makeOffset(i, j, 'WALL_VERTICAL');
         }
@@ -89,13 +87,10 @@ export class Board implements Printable {
         for (let j = room.x1 - 1; j <= room.x1; j++) {
           makeOffset(j, i, 'WALL_HORIZONTAL');
         }
-      }
-      for (let i = room.y1; i < room.y2; i++) {
         for (let j = room.x2 - 1; j <= room.x2; j++) {
           makeOffset(j, i, 'WALL_HORIZONTAL');
         }
       }
-
       makeOffset(room.x1 - 1, room.y1 - 1, 'BLOCK');
       makeOffset(room.x1 - 1, room.y2, 'BLOCK');
       makeOffset(room.x2, room.y1 - 1, 'BLOCK');

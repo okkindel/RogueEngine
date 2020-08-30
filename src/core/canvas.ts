@@ -25,7 +25,7 @@ export class Canvas {
   }
 
   public reload(): void {
-    this._context.fillStyle = CONFIG.BACKGROUND_COLOR;
+    this._context.fillStyle = CONFIG.COLORS.BACKGROUND_COLOR;
     this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
     this._context.fill();
   }

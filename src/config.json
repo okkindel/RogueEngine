@@ -1,6 +1,10 @@
 {
   "FRAMES": 60,
-  "BACKGROUND_COLOR": "#151515",
+  "COLORS": {
+    "BACKGROUND_COLOR": "#151515",
+    "PLAYER_COLOR": "#2E8B57",
+    "TILE_COLOR": "#222222"
+  },
   "GAME": {
     "BOARD_SIZE_X": 100,
     "BOARD_SIZE_Y": 100,
@@ -13,17 +17,17 @@
   },
   "TILES": {
     "GRASS": {
-      "CHAR": "⬝",
-      "ACCESIBLE": true,
-      "HEIGHT_LEVEL": 1
-    },
-    "PANEL": {
       "CHAR": "•",
       "ACCESIBLE": true,
       "HEIGHT_LEVEL": 1
     },
+    "PANEL": {
+      "CHAR": "⬝",
+      "ACCESIBLE": true,
+      "HEIGHT_LEVEL": 1
+    },
     "BLOCK": {
-      "CHAR": "■",
+      "CHAR": "+",
       "ACCESIBLE": false,
       "HEIGHT_LEVEL": 5
     },
@@ -33,7 +37,7 @@
       "HEIGHT_LEVEL": 5
     },
     "WALL_HORIZONTAL": {
-      "CHAR": "|",
+      "CHAR": "¦",
       "ACCESIBLE": false,
       "HEIGHT_LEVEL": 5
     },

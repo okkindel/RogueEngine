@@ -13,9 +13,15 @@ export class Raycaster {
 
   public static castRays(srcX: number, srcY: number): Tile[] {
     const tiles: Tile[] = [];
-    for (let angle = 0; angle < Math.PI * 2; angle += 0.1) {
-      const tile = this._castRay(srcX, srcY, angle);
-      if (tiles) tile.forEach((el) => tiles.push(el));
+    for (let angle = 0; angle < Math.PI * 2; angle += 0.02) {
+      const tileTL = this._castRay(srcX, srcY, angle);
+      const tileBR = this._castRay(
+        srcX + CONFIG.GAME.TILE_SIZE,
+        srcY + CONFIG.GAME.TILE_SIZE,
+        angle
+      );
+      tileTL.forEach((el) => tiles.push(el));
+      tileBR.forEach((el) => tiles.push(el));
     }
     return tiles.filter((v, i) => tiles.indexOf(v) === i);
   }

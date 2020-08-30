@@ -1,6 +1,4 @@
-import { setColor } from '../core/printable';
 import { Raycaster } from './Raycaster';
-import { Canvas } from '../core/canvas';
 import { Player } from './Player';
 import { Board } from './Board';
 

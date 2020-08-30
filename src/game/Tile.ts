@@ -42,19 +42,34 @@ export class Tile implements Printable {
     );
   }
 
-  public draw(predefinedColor: boolean = false): void {
+  public draw(predefinedColor?: string): void {
     const viewPort = new Point(
       this.content.position.x - Player.Position.x + window.innerWidth / 2,
       this.content.position.y - Player.Position.y + window.innerHeight / 2
     );
 
-    const distance = euclidean(Player.Position, this.content.position)
-    if (!predefinedColor) {
-      setColor(Canvas.Context, Player.Instance.availableTiles.includes(this)
+    const distance = euclidean(Player.Position, this.content.position);
+    let drawingColor = predefinedColor ? predefinedColor : CONFIG.COLORS.TILE_COLOR;
+    drawingColor = Player.Instance.availableTiles.includes(this)
       ? shadeColor('#ffffff', -(distance / 5))
-      : '#333');
+      : drawingColor;
+
+    if (!this.isAccessible) {
+      for (let i = 1; i <= this.heightLevel; i++) {
+        const newViewPort = new Point(
+          viewPort.x +
+            Math.cos(Math.atan2(Player.Position.x, this.content.position.x)) *
+              (distance / (2 * CONFIG.GAME.TILE_SIZE) + 5 * i),
+          viewPort.y +
+            Math.sin(Math.atan2(Player.Position.y, this.content.position.y)) *
+              (distance / (2 * CONFIG.GAME.TILE_SIZE) + 5 * i)
+        );
+        setColor(Canvas.Context, shadeColor(drawingColor, -(10 * i)));
+        new Text(this.content.text, newViewPort, CONFIG.GAME.TILE_SIZE).draw();
+      }
+    } else {
+      setColor(Canvas.Context, drawingColor);
+      new Text(this.content.text, viewPort, CONFIG.GAME.TILE_SIZE).draw();
     }
-      
-    new Text(this.content.text, viewPort, CONFIG.GAME.TILE_SIZE).draw();
   }
 }
