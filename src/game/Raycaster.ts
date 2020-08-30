@@ -26,15 +26,13 @@ export class Raycaster {
     let rayY = srcY + Math.sin(angle);
     let dst = CONFIG.GAME.TILE_SIZE / 2;
     let isHit = false;
-    while (!isHit && dst < 400) {
+    while (!isHit && dst < CONFIG.GAME.TILE_SIZE * 10) {
       dst += CONFIG.GAME.TILE_SIZE / 2;
       rayX = srcX + Math.cos(angle) * dst;
       rayY = srcY + Math.sin(angle) * dst;
       const row = (rayY / CONFIG.GAME.TILE_SIZE) >> 0;
       const col = (rayX / CONFIG.GAME.TILE_SIZE) >> 0;
-      const tile =
-        this._instance._board.board[col] &&
-        this._instance._board.board[col][row];
+      const tile = this._instance._board.at(col, row);
       if (tile) {
         tiles.push(tile);
         if (!tile.isAccessible) isHit = true;

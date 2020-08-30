@@ -1,5 +1,7 @@
-import { Printable } from '../core/printable';
+import { Printable, setColor } from '../core/printable';
+import { euclidean, shadeColor } from '../utils';
 import { Point, Text } from '../entity';
+import { Canvas } from '../core/canvas';
 import { Player } from './Player';
 
 import CONFIG = require('../config.json');
@@ -40,11 +42,19 @@ export class Tile implements Printable {
     );
   }
 
-  public draw(): void {
+  public draw(predefinedColor: boolean = false): void {
     const viewPort = new Point(
       this.content.position.x - Player.Position.x + window.innerWidth / 2,
       this.content.position.y - Player.Position.y + window.innerHeight / 2
     );
+
+    const distance = euclidean(Player.Position, this.content.position)
+    if (!predefinedColor) {
+      setColor(Canvas.Context, Player.Instance.availableTiles.includes(this)
+      ? shadeColor('#ffffff', -(distance / 5))
+      : '#333');
+    }
+      
     new Text(this.content.text, viewPort, CONFIG.GAME.TILE_SIZE).draw();
   }
 }

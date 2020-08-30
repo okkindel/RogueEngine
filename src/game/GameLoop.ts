@@ -25,8 +25,6 @@ export class GameLoop {
 
   private static _drawAllEntities(): void {
     this.gameBoard.draw();
-
-    setColor(Canvas.Context, '#fff');
     Player.draw();
   }
 }

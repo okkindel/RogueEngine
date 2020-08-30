@@ -1,10 +1,12 @@
+import { setColor } from '../core/printable';
+import { Canvas } from '../core/canvas';
 import { Raycaster } from './Raycaster';
 import { Text, Point } from '../entity';
 import { Board } from './Board';
 import { Tile } from './Tile';
+import { head } from 'ramda';
 
 import CONFIG = require('../config.json');
-import { head } from 'ramda';
 
 export class Player extends Tile {
   private static _instance: Player;
@@ -48,7 +50,8 @@ export class Player extends Tile {
   }
 
   public static draw(): void {
-    this._instance.draw();
+    setColor(Canvas.Context, '#fff');
+    this._instance.draw(true);
   }
 
   private _setKeyListener(): void {
@@ -71,25 +74,25 @@ export class Player extends Tile {
   }
 
   private _moveUp(): void {
-    const tile: Tile = this._board.board[this.xCord][this.yCord - 1];
+    const tile: Tile = this._board.at(this.xCord, this.yCord - 1);
     if (tile && tile.isAccessible) { this.yCord -= 1; }
     this._updatePosition();
   }
 
   private _moveDown(): void {
-    const tile: Tile = this._board.board[this.xCord][this.yCord + 1];
+    const tile: Tile = this._board.at(this.xCord, this.yCord + 1);
     if (tile && tile.isAccessible) { this.yCord += 1; }
     this._updatePosition();
   }
 
   private _moveLeft(): void {
-    const tile: Tile = this._board.board[this.xCord - 1] && this._board.board[this.xCord - 1][this.yCord];
+    const tile: Tile = this._board.at(this.xCord - 1, this.yCord);
     if (tile && tile.isAccessible) { this.xCord -= 1; }
     this._updatePosition();
   }
 
   private _moveRight(): void {
-    const tile: Tile = this._board.board[this.xCord + 1] && this._board.board[this.xCord + 1][this.yCord];
+    const tile: Tile = this._board.at(this.xCord + 1, this.yCord);
     if (tile && tile.isAccessible) { this.xCord += 1; }
     this._updatePosition();
   }

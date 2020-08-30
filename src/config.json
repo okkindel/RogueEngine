@@ -18,12 +18,22 @@
       "HEIGHT_LEVEL": 1
     },
     "PANEL": {
-      "CHAR": "≡",
+      "CHAR": "•",
       "ACCESIBLE": true,
       "HEIGHT_LEVEL": 1
     },
-    "WALL": {
-      "CHAR": "⯀",
+    "BLOCK": {
+      "CHAR": "■",
+      "ACCESIBLE": false,
+      "HEIGHT_LEVEL": 5
+    },
+    "WALL_VERTICAL": {
+      "CHAR": "—",
+      "ACCESIBLE": false,
+      "HEIGHT_LEVEL": 5
+    },
+    "WALL_HORIZONTAL": {
+      "CHAR": "|",
       "ACCESIBLE": false,
       "HEIGHT_LEVEL": 5
     },

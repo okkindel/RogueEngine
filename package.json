@@ -1,7 +1,7 @@
 {
-  "name": "rogue",
+  "name": "rogue_engine",
   "version": "0.0.1",
-  "description": "rogue engine test",
+  "description": "Rogue Engine",
   "author": "Maciej Hajduk",
   "keywords": [
     "rogue",
