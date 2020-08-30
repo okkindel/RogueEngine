@@ -1,8 +1,7 @@
-import CONFIG = require('../config.json');
-
-import { Player } from './Player';
 import { Board } from './Board';
 import { Tile } from './Tile';
+
+import CONFIG = require('../config.json');
 
 export class Raycaster {
   private static _instance: Raycaster;
@@ -12,15 +11,10 @@ export class Raycaster {
     this._board = board;
   }
 
-  public static castRays(): Tile[] {
+  public static castRays(srcX: number, srcY: number): Tile[] {
     const tiles: Tile[] = [];
-    for (let x = 0; x < 360; x += 10) {
-      const rayAngle = (x * Math.PI) / 180;
-      const tile = this._castRay(
-        Player.Position.x,
-        Player.Position.y,
-        rayAngle
-      );
+    for (let angle = 0; angle < Math.PI * 2; angle += 0.1) {
+      const tile = this._castRay(srcX, srcY, angle);
       if (tiles) tile.forEach((el) => tiles.push(el));
     }
     return tiles.filter((v, i) => tiles.indexOf(v) === i);
@@ -43,9 +37,7 @@ export class Raycaster {
         this._instance._board.board[col][row];
       if (tile) {
         tiles.push(tile);
-        if (!tile.isAccessible) {
-          isHit = true;
-        }
+        if (!tile.isAccessible) isHit = true;
       }
     }
     return tiles.filter((el, index) => tiles.indexOf(el) === index);

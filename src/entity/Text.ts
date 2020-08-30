@@ -3,7 +3,7 @@ import { Canvas } from '../core/canvas';
 import { Point } from './Point';
 
 export class Text implements Printable {
-  public font: string = 'Arial';
+  public font: string = 'Consolas';
   public position: Point;
   public text: string;
   public size: number;

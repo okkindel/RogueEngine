@@ -1,11 +1,15 @@
+import { Raycaster } from './Raycaster';
 import { Text, Point } from '../entity';
 import { Board } from './Board';
 import { Tile } from './Tile';
 
 import CONFIG = require('../config.json');
+import { head } from 'ramda';
 
 export class Player extends Tile {
   private static _instance: Player;
+
+  public availableTiles: Tile[] = [];
   private _board: Board;
 
   public static get Position(): Point {
@@ -24,23 +28,23 @@ export class Player extends Tile {
       new Text(
         CONFIG.TILES.CHARACTER.CHAR,
         new Point(
-          CONFIG.GAME.PLAYER_X * CONFIG.GAME.TILE_SIZE,
-          CONFIG.GAME.PLAYER_Y * CONFIG.GAME.TILE_SIZE
+          head(board.rooms).center.x * CONFIG.GAME.TILE_SIZE,
+          head(board.rooms).center.y * CONFIG.GAME.TILE_SIZE
         ),
         CONFIG.GAME.TILE_SIZE
       ),
-      CONFIG.GAME.PLAYER_X,
-      CONFIG.GAME.PLAYER_Y,
+      head(board.rooms).center.x,
+      head(board.rooms).center.y,
       false,
       CONFIG.TILES.CHARACTER.HEIGHT_LEVEL
     );
-
-    this._board = board;
-    this._setKeyListener();
   }
 
   public static setInstance(board: Board) {
     this._instance = new Player(board);
+    this._instance._board = board;
+    this._instance._setKeyListener();
+    this._instance._updatePosition();
   }
 
   public static draw(): void {
@@ -92,5 +96,6 @@ export class Player extends Tile {
 
   private _updatePosition(): void {
     this.content.position = Player.Position;
+    this.availableTiles = Raycaster.castRays(Player.Position.x, Player.Position.y);
   }
 }

@@ -15,8 +15,8 @@ export class GameLoop {
       CONFIG.GAME.BOARD_SIZE_X,
       CONFIG.GAME.BOARD_SIZE_Y
     );
-    Player.setInstance(this.gameBoard);
     Raycaster.setInstance(this.gameBoard);
+    Player.setInstance(this.gameBoard);
   }
 
   public static OnLoop(): void {

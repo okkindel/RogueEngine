@@ -45,7 +45,6 @@ export class Tile implements Printable {
       this.content.position.x - Player.Position.x + window.innerWidth / 2,
       this.content.position.y - Player.Position.y + window.innerHeight / 2
     );
-
     new Text(this.content.text, viewPort, CONFIG.GAME.TILE_SIZE).draw();
   }
 }

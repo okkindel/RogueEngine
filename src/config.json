@@ -4,13 +4,21 @@
   "GAME": {
     "BOARD_SIZE_X": 100,
     "BOARD_SIZE_Y": 100,
-    "TILE_SIZE": 30,
-    "PLAYER_X": 10,
-    "PLAYER_Y": 10
+    "TILE_SIZE": 30
+  },
+  "ROOMS": {
+    "MAX_ROOMS": 15,
+    "MIN_ROOM_SIZE": 5,
+    "MAX_ROOM_SIZE": 20
   },
   "TILES": {
     "GRASS": {
       "CHAR": "⬝",
+      "ACCESIBLE": true,
+      "HEIGHT_LEVEL": 1
+    },
+    "PANEL": {
+      "CHAR": "≡",
       "ACCESIBLE": true,
       "HEIGHT_LEVEL": 1
     },
@@ -19,8 +27,13 @@
       "ACCESIBLE": false,
       "HEIGHT_LEVEL": 5
     },
+    "SPACE": {
+      "CHAR": " ",
+      "ACCESIBLE": false,
+      "HEIGHT_LEVEL": 0
+    },
     "CHARACTER": {
-      "CHAR": "C",
+      "CHAR": "@",
       "ACCESIBLE": true,
       "HEIGHT_LEVEL": 1
     }
